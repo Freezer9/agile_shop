@@ -88,7 +88,7 @@ function submit() {
                                 <td class="w-32 p-4">
                                     <img
                                         v-if="product.product_images.length > 0"
-                                        :src="`/${product.product_images[0].image}`"
+                                        :src="`${product.product_images[0].image}`"
                                         alt="Apple Watch"
                                     />
                                     <img

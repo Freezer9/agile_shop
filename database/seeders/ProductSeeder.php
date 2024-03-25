@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Platform;
 use App\Models\Product;
 use Database\Factories\ProductFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class ProductSeeder extends Seeder
 {
@@ -14,16 +17,32 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::create(
-            [
-                'title' => 'Elit reprehenderit eu nostrud et.',
-                'price' => 19.03,
-                'quantity' => 3,
-                'category_id' => 1,
-                'brand_id' => 1,
-                'description' => 'Occaecat cupidatat consequat eu eiusmod sint commodo aute. Fugiat commodo amet do dolore. Ullamco ullamco nisi laboris cillum ea. Excepteur exercitation laborum culpa ex do ipsum id laboris ut ad est commodo. Commodo occaecat commodo ex laborum ea esse consequat pariatur tempor qui reprehenderit. Irure ullamco esse cupidatat voluptate in sunt do officia ullamco fugiat deserunt.'
-            ],
-            Product::factory(10)->create(),
-        );
+        $faker = new Faker();
+        $client = new Client();
+        $response = $client->get("https://www.freetogame.com/api/games");
+        $data = json_decode($response->getBody()->getContents());
+
+        foreach ($data as $game) {
+            $category = Category::where('name', $game->genre)->first();
+            $brand = Category::where('publisher', $game->publisher)->where('developers', $game->developer)->first();
+            $platform = Platform::where('name', $game->platform)->first();
+
+            $brandId = $brand ? $brand->id : 1;
+            $categoryId = $category ? $category->id : 1;
+            $platformId = $platform ? $platform->id : 1;
+
+            Product::create([
+                'title' => $game->title,
+                'price' => $faker->randomFloat(2, 1, 100),
+                'quantity' => $faker->numberBetween(1, 100),
+                'category_id' => $categoryId,
+                'brand_id' => $brandId,
+                'platform_id' => $platformId,
+                'description' => $game->short_description
+            ])->product_images()->create([
+                'image' => $game->thumbnail,
+                'alt_text' => $game->title
+            ]);
+        }
     }
 }

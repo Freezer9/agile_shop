@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Platform;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,16 +16,18 @@ class ProductListController extends Controller
     public function index()
     {
         $products = Product::with('category', 'brand', 'product_images');
-        $filterProducts = $products->filtered()->paginate(9)->withQueryString();
+        $filterProducts = $products->filtered()->paginate(12)->withQueryString();
 
         $categories = Category::get();
         $brands = Brand::get();
-        
+        $platform = Platform::get();
+
         return Inertia::render(
             'User/ProductList',
             [
-                'categories'=>$categories,
-                'brands'=>$brands,
+                'categories' => $categories,
+                'brands' => $brands,
+                'platforms' => $platform,
                 'products' => ProductResource::collection($filterProducts)
             ]
         );

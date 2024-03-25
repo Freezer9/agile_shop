@@ -13,9 +13,9 @@ use Inertia\Inertia;
 
 class CartController extends Controller
 {
-    public function view(Request $request, Product $product)
+    public function view(Request $request)
     {
-       
+
         $user = $request->user();
         if ($user) {
             $cartItems = CartItem::where('user_id', $user->id)->get();
@@ -28,10 +28,8 @@ class CartController extends Controller
                         'userAddress' => $userAddress
                     ]
                 );
-            } 
-            
-        }
-        else {
+            }
+        } else {
             $cartItems = Cart::getCookieCartItems();
             if (count($cartItems) > 0) {
                 $cartItems = new CartResource(Cart::getProductsAndCartItems());

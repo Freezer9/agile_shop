@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Platform;
 use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
-class CategorySeeder extends Seeder
+class PlatformSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,13 +19,12 @@ class CategorySeeder extends Seeder
         $data = json_decode($response->getBody()->getContents());
 
         foreach ($data as $game) {
-            $categoryName = trim($game->genre);
-            $existingCategory = Category::where('name', $categoryName)->first();
+            $platform = trim($game->platform);
+            $existingPlatform = Platform::where('name', $platform)->first();
 
-            if (!$existingCategory) {
-                Category::create([
-                    'name' => $categoryName,
-                    'slug' => Str::lower($categoryName)
+            if (!$existingPlatform) {
+                Platform::create([
+                    'name' => $platform
                 ]);
             }
         }

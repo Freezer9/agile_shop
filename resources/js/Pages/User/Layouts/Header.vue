@@ -5,6 +5,12 @@ const canLogin = usePage().props.canLogin;
 const canRegister = usePage().props.canRegister;
 const auth = usePage().props.auth;
 const cart = computed(() => usePage().props.cart);
+
+const isActive = (route) => {
+    return route === window.location.pathname
+        ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+        : "isActive('/about')";
+};
 </script>
 <template>
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -176,37 +182,28 @@ const cart = computed(() => usePage().props.cart);
                 >
                     <li>
                         <a
-                            href="#"
-                            class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                            :href="route('home')"
+                            :class="isActive('/')"
                             aria-current="page"
                             >Home</a
                         >
                     </li>
                     <li>
-                        <a
-                            href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                        <a :href="route('about')" :class="isActive('/about')"
                             >About</a
                         >
                     </li>
                     <li>
                         <a
-                            href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                            :href="route('services')"
+                            :class="isActive('/services')"
                             >Services</a
                         >
                     </li>
                     <li>
                         <a
-                            href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                            >Pricing</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                            :href="route('contact')"
+                            :class="isActive('/contact')"
                             >Contact</a
                         >
                     </li>

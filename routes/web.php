@@ -17,6 +17,10 @@ use Inertia\Inertia;
 //user rotues
 
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/about', [UserController::class, 'about'])->name('about');
+Route::get('/services', [UserController::class, 'services'])->name('services');
+Route::get('/contact', [UserController::class, 'contact'])->name('contact');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

@@ -3,6 +3,9 @@ import { Link, router } from "@inertiajs/vue3";
 import UserLayouts from "./Layouts/UserLayouts.vue";
 import Hero from "./Layouts/Hero.vue";
 import Products from "../User/Components/Products.vue";
+import About from "../User/Page/About.vue";
+import Services from "../User/Page/Services.vue";
+import Contact from "../User/Page/Contact.vue";
 //products list
 defineProps({
     products: Array,
@@ -32,6 +35,9 @@ defineProps({
                         View All Products</Link
                     >
                 </div>
+                <About></About>
+                <Services></Services>
+                <Contact></Contact>
             </div>
         </div>
     </UserLayouts>

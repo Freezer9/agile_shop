@@ -189,21 +189,19 @@ const isActive = (route) => {
                         >
                     </li>
                     <li>
-                        <a :href="route('about')" :class="isActive('/about')"
+                        <a href="#about"
                             >About</a
                         >
                     </li>
                     <li>
                         <a
-                            :href="route('services')"
-                            :class="isActive('/services')"
+                            href="#services"
                             >Services</a
                         >
                     </li>
                     <li>
                         <a
-                            :href="route('contact')"
-                            :class="isActive('/contact')"
+                            href="#contact"
                             >Contact</a
                         >
                     </li>

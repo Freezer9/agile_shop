@@ -25,7 +25,7 @@ defineProps({
                 </h2>
 
                 <!-- product list component -->
-                <Products :products="products"></Products>
+                <Products :products="products.slice(0, 4)"></Products>
                 <!-- end -->
                 <div class="flex justify-center mt-5">
                     <Link

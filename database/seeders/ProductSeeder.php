@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Platform;
 use App\Models\Product;
@@ -24,7 +25,7 @@ class ProductSeeder extends Seeder
 
         foreach ($data as $game) {
             $category = Category::where('name', $game->genre)->first();
-            $brand = Category::where('publisher', $game->publisher)->where('developers', $game->developer)->first();
+            $brand = Brand::where('publisher', $game->publisher)->where('developer', $game->developer)->first();
             $platform = Platform::where('name', $game->platform)->first();
 
             $brandId = $brand ? $brand->id : 1;
@@ -34,7 +35,6 @@ class ProductSeeder extends Seeder
             Product::create([
                 'title' => $game->title,
                 'price' => $faker->randomFloat(2, 1, 100),
-                'quantity' => $faker->numberBetween(1, 100),
                 'category_id' => $categoryId,
                 'brand_id' => $brandId,
                 'platform_id' => $platformId,

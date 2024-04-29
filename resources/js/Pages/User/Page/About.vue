@@ -35,13 +35,16 @@
                     </a>
                     <a class="block rounded-xl border border-gray-100 p-4 shadow-lg">
                         <span class="inline-block rounded-lg bg-gray-50 p-3">
-                            <svg class="h-8 w-8"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M8 13.5v-4a1.5 1.5 0 0 1 3 0v2.5m0 -2.5v-6a1.5 1.5 0 0 1 3 0v8.5m0 -2.5a1.5 1.5 0 0 1 3 0v2.5m0 -1.5a1.5 1.5 0 0 1 3 0v5.5a6 6 0 0 1 -6 6h-2a7 6 0 0 1 -5 -3l-2.7 -5.25a1.4 1.4 0 0 1 2.75 -2l.9 1.75" /></svg>
+                            <svg class="h-8 w-8"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                                </svg>
+
                         </span>
 
                         <h2 class="mt-1 text-xl font-bold">100+</h2>
 
                         <p class="hidden sm:block sm:text-sm sm:text-gray-600">
-                            Our total games.
+                            Safe and comfortable shopping without hassle.
                         </p>
                     </a>
 

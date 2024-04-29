@@ -15,13 +15,6 @@ class UserController extends Controller
     public function index()
     {
         $products = Product::with('brand', 'category', 'product_images')->orderBy('id', 'desc')->limit(8)->get();
-        // $client = new Client();
-        // $response = $client->get("https://www.freetogame.com/api/games");
-        // $data = json_decode($response->getBody()->getContents());
-
-        // foreach ($data as $game) {
-        //     $categoryId = Category::where('name', $game->genre)->first()->id;
-        // }
 
         return Inertia::render('User/Index', [
             'products' => $products,

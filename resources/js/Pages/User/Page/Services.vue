@@ -11,6 +11,7 @@
                 >
                     Services
                 </h1>
+                <p class="hidden sm:block sm:text-sm sm:text-gray-600"></p>
             </div>
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full md:w-1/2 lg:w-1/3 px-4">
@@ -34,11 +35,11 @@
                             </svg>
                         </div>
                         <h4 class="font-semibold text-xl text-dark mb-3">
-                            Refreshing Design
+                            Money back guarantee
                         </h4>
                         <p class="text-body-color">
-                            We dejoy working with discerning clients, people for
-                            whom qualuty, service, integrity & aesthetics.
+                            if the product is not original and you don't get a
+                            sales receipt
                         </p>
                     </div>
                 </div>
@@ -71,11 +72,11 @@
                             </svg>
                         </div>
                         <h4 class="font-semibold text-xl text-dark mb-3">
-                            Based on Tailwind CSS
+                            Guarantee for 1 month
                         </h4>
                         <p class="text-body-color">
-                            We dejoy working with discerning clients, people for
-                            whom qualuty, service, integrity & aesthetics.
+                            if the product you purchased cannot be made while
+                            the purchase receipt is still available
                         </p>
                     </div>
                 </div>
@@ -112,11 +113,12 @@
                             </svg>
                         </div>
                         <h4 class="font-semibold text-xl text-dark mb-3">
-                            300+ Components
+                            24 hour response
                         </h4>
                         <p class="text-body-color">
-                            We dejoy working with discerning clients, people for
-                            whom qualuty, service, integrity & aesthetics.
+                            Our customer service team is ready to help you with
+                            any problems after purchase, such as problems with
+                            downloading, installing and using the game.
                         </p>
                     </div>
                 </div>

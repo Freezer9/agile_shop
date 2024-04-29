@@ -348,6 +348,4 @@ function submit() {
             </div>
         </section>
     </UserLayouts>
-
-    <!-- TODO If the cart is empty? -->
 </template>

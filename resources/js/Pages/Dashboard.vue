@@ -20,7 +20,5 @@ import { Head } from "@inertiajs/vue3";
                 </div>
             </div>
         </div>
-
-        <!-- TODO User Dashboard View -->
     </AuthenticatedLayout>
 </template>

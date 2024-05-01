@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Platform;
 use App\Models\Product;
@@ -18,13 +19,13 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $faker = new Faker();
-        $client = new Client();
+        $client = new Client(["verify" => false]);
         $response = $client->get("https://www.freetogame.com/api/games");
         $data = json_decode($response->getBody()->getContents());
 
         foreach ($data as $game) {
             $category = Category::where('name', $game->genre)->first();
-            $brand = Category::where('publisher', $game->publisher)->where('developers', $game->developer)->first();
+            $brand = Brand::where('publisher', $game->publisher)->where('developer', $game->developer)->first();
             $platform = Platform::where('name', $game->platform)->first();
 
             $brandId = $brand ? $brand->id : 1;

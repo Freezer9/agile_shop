@@ -13,13 +13,12 @@ onMounted(() => {
     <!-- header -->
     <Header></Header>
     <!-- end -->
-    <!-- main content -->
 
+    <!-- main content -->
     <slot />
     <!-- end -->
+
     <!-- footer -->
-
     <Footer></Footer>
-
     <!-- end -->
 </template>

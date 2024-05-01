@@ -35,7 +35,6 @@ class ProductSeeder extends Seeder
             Product::create([
                 'title' => $game->title,
                 'price' => $faker->randomFloat(2, 1, 100),
-                'quantity' => $faker->numberBetween(1, 100),
                 'category_id' => $categoryId,
                 'brand_id' => $brandId,
                 'platform_id' => $platformId,

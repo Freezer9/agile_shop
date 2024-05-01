@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@vshop.com',
             'password' => Hash::make('password'),
-
         ]);
     }
 }

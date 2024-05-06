@@ -19,7 +19,8 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $faker = new Faker();
-        $client = new Client();
+        $client = new Client(['verify' => false]);
+
         $response = $client->get("https://www.freetogame.com/api/games");
         $data = json_decode($response->getBody()->getContents());
 

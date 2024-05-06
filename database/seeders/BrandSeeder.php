@@ -15,7 +15,7 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
-        $client = new Client();
+        $client = new Client(['verify' => false]);
 
         $response = $client->get("https://www.freetogame.com/api/games");
         $data = json_decode($response->getBody()->getContents());

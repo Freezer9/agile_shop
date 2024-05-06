@@ -17,6 +17,7 @@ use Inertia\Inertia;
 //user rotues
 
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/detail', [UserController::class, 'detail'])->name('detail');
 Route::get('/about', [UserController::class, 'about'])->name('about');
 Route::get('/services', [UserController::class, 'services'])->name('services');
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');

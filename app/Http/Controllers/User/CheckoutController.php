@@ -143,4 +143,9 @@ class CheckoutController extends Controller
             throw new NotFoundHttpException();
         }
     }
+
+    public function cancel()
+    {
+        return redirect()->route('dashboard');
+    }
 }

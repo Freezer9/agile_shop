@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('published')->default(0);
             $table->boolean('inStock')->default(0);
             $table->decimal('price', 10, 2);
+            $table->date('release_date')->nullable();
 
             $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->foreignIdFor(User::class, 'updated_by')->nullable();

@@ -30,6 +30,11 @@ class UserController extends Controller
         return Inertia::render('User/Page/About');
     }
 
+    public function detail()
+    {
+        return Inertia::render('User/Page/DetailProduct');
+    }
+
     public function services()
     {
         return Inertia::render('User/Page/Services');

@@ -17,6 +17,7 @@ use Inertia\Inertia;
 //user rotues
 
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/detail/{id}', [UserController::class, 'detail'])->name('detail');
 Route::get('/about', [UserController::class, 'about'])->name('about');
 Route::get('/services', [UserController::class, 'services'])->name('services');
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
@@ -37,7 +38,6 @@ Route::middleware('auth')->group(function () {
 });
 
 //add to cart 
-
 Route::prefix('cart')->controller(CartController::class)->group(function () {
     Route::get('view', 'view')->name('cart.view');
     Route::post('store/{product}', 'store')->name('cart.store');
@@ -55,7 +55,6 @@ Route::prefix('products')->controller(ProductListController::class)->group(funct
 //end
 
 //admin routs
-
 Route::group(['prefix' => 'admin', 'middleware' => 'redirectAdmin'], function () {
     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.post');
@@ -71,6 +70,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/products/image/{id}', [ProductController::class, 'deleteImage'])->name('admin.products.image.delete');
     Route::delete('/products/destory/{id}', [ProductController::class, 'destory'])->name('admin.products.destory');
+
+    // brand category
+    // Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands.index');
 });
 
 //end

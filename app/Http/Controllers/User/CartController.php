@@ -15,7 +15,6 @@ class CartController extends Controller
 {
     public function view(Request $request)
     {
-
         $user = $request->user();
         if ($user) {
             $cartItems = CartItem::where('user_id', $user->id)->get();

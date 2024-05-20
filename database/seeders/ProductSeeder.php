@@ -19,7 +19,12 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $faker = new Faker();
+<<<<<<< HEAD
         $client = new Client(["verify" => false]);
+=======
+        $client = new Client(['verify' => false]);
+
+>>>>>>> cde9cc4c5ae236fc82733ffdaf94f22a4717bfd0
         $response = $client->get("https://www.freetogame.com/api/games");
         $data = json_decode($response->getBody()->getContents());
 
@@ -31,6 +36,11 @@ class ProductSeeder extends Seeder
             $brandId = $brand ? $brand->id : 1;
             $categoryId = $category ? $category->id : 1;
             $platformId = $platform ? $platform->id : 1;
+            if ($game->release_date) {
+                $releaseDate = date('Y-m-d', strtotime($game->release_date));
+            } else {
+                $releaseDate = null;
+            }
 
             Product::create([
                 'title' => $game->title,
@@ -38,7 +48,8 @@ class ProductSeeder extends Seeder
                 'category_id' => $categoryId,
                 'brand_id' => $brandId,
                 'platform_id' => $platformId,
-                'description' => $game->short_description
+                'description' => $game->short_description,
+                'release_date' => $releaseDate
             ])->product_images()->create([
                 'image' => $game->thumbnail,
                 'alt_text' => $game->title

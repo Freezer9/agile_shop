@@ -13,7 +13,12 @@ class PlatformSeeder extends Seeder
      */
     public function run(): void
     {
+<<<<<<< HEAD
         $client = new Client(["verify" => false]);
+=======
+        $client = new Client(['verify' => false]);
+
+>>>>>>> cde9cc4c5ae236fc82733ffdaf94f22a4717bfd0
         $response = $client->get("https://www.freetogame.com/api/games");
         $data = json_decode($response->getBody()->getContents());
 

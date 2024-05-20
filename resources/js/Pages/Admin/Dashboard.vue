@@ -67,6 +67,8 @@ import AdminLayout from "./Components/AdminLayout.vue";
 onMounted(() => {
     initFlowbite();
 });
+
+
 </script>
 
 <script>

@@ -70,7 +70,7 @@ const addToCart = (product) => {
                         </a>
                     </div>
                     <div class="bg-blue-700 p-2 rounded-full ml-2">
-                        <a :href="route('detail')">
+                        <a :href="`/detail/${product.id}`">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"

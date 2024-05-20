@@ -24,7 +24,7 @@ class AdminController extends Controller
             $currentDate->addDay();
         }
 
-        dd($orders);
+        // dd($orders);
 
         return Inertia::render('Admin/Dashboard', ['orders' => $orders]);
     }

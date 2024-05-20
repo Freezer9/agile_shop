@@ -22,9 +22,10 @@
         "@heroicons/vue": "^2.0.18",
         "@vue-hero-icons/outline": "^1.7.2",
         "@vue-hero-icons/solid": "^1.7.2",
+        "chart.js": "^4.4.2",
         "element-plus": "^2.3.12",
         "flowbite": "^1.8.1",
-        "sweetalert2": "^11.7.27",
+        "sweetalert2": "^11.6.13",
         "vue-sweetalert2": "^5.0.5"
     }
 }

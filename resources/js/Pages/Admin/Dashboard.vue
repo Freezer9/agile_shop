@@ -6,8 +6,7 @@
             >
                 <div
                     class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"
-                >
-            </div>
+                ></div>
                 <div
                     class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
                 ></div>
@@ -20,7 +19,15 @@
             </div>
             <div
                 class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
-            >besar</div>
+            >
+                <div class="flex justify-center items-center h-full">
+                    <Bar
+                        id="my-chart-id"
+                        :options="chartOptions"
+                        :data="chartData"
+                    />
+                </div>
+            </div>
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div
                     class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
@@ -55,28 +62,45 @@
         </div>
 
         <!-- TODO: Admin dashboard (Jeki, Alif) -->
-        
     </AdminLayout>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { initFlowbite } from "flowbite";
 import AdminLayout from "./Components/AdminLayout.vue";
-// initialize components based on data attribute selectors
+import Axios from "axios"; // Impor Axios
+
+// Inisialisasi komponen berdasarkan pemilih atribut data
 onMounted(() => {
     initFlowbite();
 });
 
+const chartData = ref(null); // Buat variabel chartData sebagai data yang akan diterima
 
+// Lakukan permintaan GET ke endpoint yang sesuai
+Axios.get('/admin/dashboard')
+    .then(response => {
+        chartData.value = {
+    labels: Object.keys(chartData.value), // Misalnya, gunakan bulan sebagai label
+    datasets: [
+        {
+            label: 'Jumlah Transaksi',
+            data: Object.values(chartData.value), // Gunakan jumlah transaksi sebagai data
+        },
+    ],
+};
+
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 </script>
 
 <script>
 import { Bar } from "vue-chartjs";
-import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import AdminLayout from "./Components/AdminLayout.vue";
-// initialize components based on data attribute selectors
 import {
     Chart as ChartJS,
     Title,
@@ -87,6 +111,7 @@ import {
     LinearScale,
 } from "chart.js";
 
+// Inisialisasi komponen berdasarkan pemilih atribut data
 onMounted(() => {
     initFlowbite();
 });
@@ -103,7 +128,7 @@ ChartJS.register(
 export default {
     name: "SalesChart",
     components: { Bar },
-    data() {
+    setup() {
         return {
             chartData: {
                 labels: [
@@ -121,9 +146,17 @@ export default {
                     "December",
                 ],
                 datasets: [
-                    { data: [40, 20, 12, 60, 23, 54, 32, 60, 12, 32, 44, 55] },
+                    {
+                        label: 'Jumlah Transaksi',
+                        data: Object.values(chartData.value), // Menggunakan nilai dari array asosiatif
+                    },
                 ],
             },
+        };
+    },
+
+    data() {
+        return {
             chartOptions: {
                 responsive: true,
             },

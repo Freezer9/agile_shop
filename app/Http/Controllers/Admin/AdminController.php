@@ -12,20 +12,30 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $startDate = Carbon::now()->startOfMonth();
-        $endDate = Carbon::now()->endOfMonth();
+        $startDate = Carbon::now()->startOfYear();
+        $endDate = Carbon::now()->endOfYear();
 
         $orders = [];
         $currentDate = $startDate;
 
         while ($currentDate <= $endDate) {
-            $orderCount = Order::whereDate('created_at', $currentDate)->count();
-            $orders[$currentDate->format('Y-m-d')] = $orderCount;
-            $currentDate->addDay();
+            $month = $currentDate->format('Y-m');
+            if (!isset($orders[$month])) {
+                $orders[$month] = 0;
+            }
+            $orderCount = Order::whereMonth('created_at', $currentDate->month)
+                ->whereYear('created_at', $currentDate->year)
+                ->count();
+            $orders[$month] = $orderCount;
+            $currentDate->addMonth();
         }
 
-        // dd($orders);
+        // extract the value remove the key
+        foreach ($orders as $order) {
+            $ordersValue[] = $order;
+        }
 
-        return Inertia::render('Admin/Dashboard', ['orders' => $orders]);
+
+        return Inertia::render('Admin/Dashboard', ['orders' => $ordersValue]);
     }
 }

@@ -1,3 +1,13 @@
+<script setup>
+import { onMounted } from "vue";
+import { initFlowbite } from "flowbite";
+import AdminLayout from "./Components/AdminLayout.vue";
+
+onMounted(() => {
+    initFlowbite();
+});
+</script>
+
 <template>
     <AdminLayout>
         <div>
@@ -60,27 +70,11 @@
                 ></div>
             </div>
         </div>
-
-        <!-- TODO: Admin dashboard (Jeki, Alif) -->
     </AdminLayout>
 </template>
 
-<script setup>
-import { onMounted } from "vue";
-import { initFlowbite } from "flowbite";
-import AdminLayout from "./Components/AdminLayout.vue";
-// initialize components based on data attribute selectors
-onMounted(() => {
-    initFlowbite();
-});
-</script>
-
 <script>
 import { Bar } from "vue-chartjs";
-import { onMounted } from "vue";
-import { initFlowbite } from "flowbite";
-import AdminLayout from "./Components/AdminLayout.vue";
-// initialize components based on data attribute selectors
 import {
     Chart as ChartJS,
     Title,
@@ -90,10 +84,6 @@ import {
     CategoryScale,
     LinearScale,
 } from "chart.js";
-
-onMounted(() => {
-    initFlowbite();
-});
 
 ChartJS.register(
     Title,
@@ -107,6 +97,12 @@ ChartJS.register(
 export default {
     name: "SalesChart",
     components: { Bar },
+    props: {
+        orders: {
+            type: Array,
+            required: true,
+        },
+    },
     data() {
         return {
             chartData: {
@@ -125,11 +121,52 @@ export default {
                     "December",
                 ],
                 datasets: [
-                    { data: [40, 20, 12, 60, 23, 54, 32, 60, 12, 32, 44, 55] },
+                    {
+                        data: this.orders,
+                        backgroundColor: [
+                            "rgba(255, 99, 132, 0.2)",
+                            "rgba(255, 159, 64, 0.2)",
+                            "rgba(255, 205, 86, 0.2)",
+                            "rgba(75, 192, 192, 0.2)",
+                            "rgba(54, 162, 235, 0.2)",
+                            "rgba(153, 102, 255, 0.2)",
+                            "rgba(201, 203, 207, 0.2)",
+                            "rgba(255, 99, 132, 0.2)",
+                            "rgba(255, 159, 64, 0.2)",
+                            "rgba(255, 205, 86, 0.2)",
+                            "rgba(75, 192, 192, 0.2)",
+                            "rgba(54, 162, 235, 0.2)",
+                        ],
+                        borderColor: [
+                            "rgb(255, 99, 132)",
+                            "rgb(255, 159, 64)",
+                            "rgb(255, 205, 86)",
+                            "rgb(75, 192, 192)",
+                            "rgb(54, 162, 235)",
+                            "rgb(153, 102, 255)",
+                            "rgb(201, 203, 207)",
+                            "rgb(255, 99, 132)",
+                            "rgb(255, 159, 64)",
+                            "rgb(255, 205, 86)",
+                            "rgb(75, 192, 192)",
+                            "rgb(54, 162, 235)",
+                        ],
+                        borderWidth: 1,
+                        minBarLength: 2,
+                        label: "Sales Reports",
+                    },
                 ],
             },
             chartOptions: {
                 responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxis: {
+                        grid: {
+                            display: false,
+                        },
+                    },
+                },
             },
         };
     },

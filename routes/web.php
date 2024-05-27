@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
@@ -72,7 +74,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/products/destory/{id}', [ProductController::class, 'destory'])->name('admin.products.destory');
 
     // brand category
-    // Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands.index');
+    Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');
 });
 
 //end

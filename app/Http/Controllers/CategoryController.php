@@ -12,8 +12,6 @@ class CategoryController extends Controller
     {
         $brand = Category::get();
 
-        dd($brand);
-
         return Inertia::render('Admin/Category/Index');
     }
 }
